@@ -1,0 +1,22 @@
+{
+  "name": "@writetome51/open-array-item-replacer",
+  "version": "1.0.0",
+  "description": "an array-manipulating typescript/javascript class with methods that replace items in the array",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "array",
+    "manipulation",
+    "typescript",
+    "class"
+  ],
+  "author": "Steve Thompson",
+  "license": "MIT",
+  "dependencies": {
+    "@writetome51/open-array-container": "latest",
+    "@writetome51/array-insert-replace-basic": "latest",
+    "@writetome51/array-replace-intermediate": "latest"
+  }
+}
