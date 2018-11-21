@@ -1,10 +1,15 @@
 {
-  "name": "@writetome51/open-array-item-replacer",
+  "name": "@writetome51/public-array-replacer",
   "version": "1.0.0",
-  "description": "an array-manipulating typescript/javascript class with methods that replace items in the array",
-  "main": "",
+  "description": "An array-manipulating typescript/javascript class with methods that replace items in the array",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "build": "tsc"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/writetome51/public-array-replacer.git"
   },
   "keywords": [
     "array",
@@ -14,11 +19,21 @@
   ],
   "author": "Steve Thompson",
   "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/writetome51/public-array-replacer/issues"
+  },
+  "homepage": "https://github.com/writetome51/public-array-replacer#readme",
+  "devDependencies": {
+    "typescript": "^3.0.1"
+  },
   "dependencies": {
-    "basic-data-handling": "latest",
-    "@writetome51/adjacent-to-value-info-interface": "latest",
-    "@writetome51/open-array-container": "latest",
-    "@writetome51/array-insert-replace-basic": "latest",
-    "@writetome51/array-replace-intermediate": "latest"
+    "basic-data-handling": "~1.0.13",
+    "@writetome51/adjacent-to-value-info-interface": "~1.0.2",
+    "@writetome51/array-replace-between": "~1.0.1",
+    "@writetome51/array-replace-adjacent-at": "~1.0.1",
+    "@writetome51/array-replace-adjacent-to-value": "~1.1.1",
+    "@writetome51/array-replace-at": "~1.1.1",
+    "@writetome51/array-replace-first-of-all-of": "~1.1.2",
+    "@writetome51/public-array-container": "~1.0.4"
   }
 }
