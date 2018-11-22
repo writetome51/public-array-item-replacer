@@ -20,41 +20,50 @@ var array_replace_between_1 = require("@writetome51/array-replace-between");
 var array_replace_first_of_all_of_1 = require("@writetome51/array-replace-first-of-all-of");
 var array_replace_adjacent_to_value_1 = require("@writetome51/array-replace-adjacent-to-value");
 var array_replace_at_1 = require("@writetome51/array-replace-at");
+var _replaceAdjacentItems_1 = require("@writetome51/array-replace-adjacent-items/_replaceAdjacentItems");
 var PublicArrayReplacer = /** @class */ (function (_super) {
     __extends(PublicArrayReplacer, _super);
     function PublicArrayReplacer(data) {
         if (data === void 0) { data = []; }
         return _super.call(this, data) || this;
     }
-    // These functions all modify the array, and return the class instance.
-    // index can be negative or positive.
+    // These functions all modify the array and return the class instance.
+    // Replaces item at index with newValue.  index can be negative or positive.
     PublicArrayReplacer.prototype.at = function (index, newValue) {
         return this.returnThis_after(array_replace_at_1.replaceAt(index, newValue, this.data));
     };
+    // Replaces adjacent items beginning at startingIndex with newValues.  
+    // Number of adjacent items that are replaced is same as number of items in newValues.
     // startingIndex can be negative or positive.
     PublicArrayReplacer.prototype.adjacentAt = function (startingIndex, newValues) {
         return this.returnThis_after(array_replace_adjacent_at_1.replaceAdjacentAt(startingIndex, newValues, this.data));
+    };
+    // Replaces adjacent items beginning at startingIndex with newValues.
+    // You choose howManyToReplace.
+    // startingIndex can be negative or positive.
+    PublicArrayReplacer.prototype.adjacentVariableAt = function (startingIndex, howManyToReplace, newValues) {
+        return this.returnThis_after(_replaceAdjacentItems_1._replaceAdjacentItems(startingIndex, howManyToReplace, newValues, this.data));
     };
     PublicArrayReplacer.prototype.adjacentToValue = function (info, newValues) {
         return this.returnThis_after(array_replace_adjacent_to_value_1.replaceAdjacentToValue(info, newValues, this.data));
     };
     /********
      Explanation of adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this
-        Replaces adjacent items including, or near a particular value, with newValues.
-        Only applies to the first instance of value found in array.
-        The parameter 'info' is an object that looks like this:
-        {
-            value: any except object (the value to search for in the array),
-            offset: integer (tells function where, in relation to value, to begin selecting adjacent
-                        items to replace.  If offset is zero, the selection will begin with value.)
-            howMany: integer greater than zero (it's how many adjacent items to replace)
-        }
+     Replaces adjacent items including, or near a particular value, with newValues.
+     Only applies to the first instance of value found in array.
+     The parameter 'info' is an object that looks like this:
+     {
+        value: any except object (the value to search for in the array),
+        offset: integer (tells function where, in relation to value, to begin selecting adjacent
+                            items to replace.  If offset is zero, the selection will begin with value.)
+        howMany: integer greater than zero (it's how many adjacent items to replace)
+     }
 
-        Example:
-        //  array is [1,2,3,4,5,6,7,8] .
-        //  let newValues = [20,30,40];
-        //  this.adjacentToValue({value: 5, offset: -1, howMany: 2},  newValues);
-        //  array is now [1,2,3,20,30,40,6,7,8]
+     Example:
+     //  array is [1,2,3,4,5,6,7,8] .
+     //  let newValues = [20,30,40];
+     //  this.adjacentToValue({value: 5, offset: -1, howMany: 2},  newValues);
+     //  array is now [1,2,3,20,30,40,6,7,8]
 
      *********/
     // Replaces everything between numItemsToKeepAtEachEnd with newValues.
@@ -63,25 +72,26 @@ var PublicArrayReplacer = /** @class */ (function (_super) {
     PublicArrayReplacer.prototype.between = function (numItemsToKeepAtEachEnd, newValues) {
         return this.returnThis_after(array_replace_between_1.replaceBetween(numItemsToKeepAtEachEnd, newValues, this.data));
     };
-    // Replaces first instance of value.
+    // Replaces first instance of value with newValue.
     PublicArrayReplacer.prototype.firstOf = function (value, newValue) {
         return this.returnThis_after(array_replace_first_of_all_of_1.replaceFirstOf(value, newValue, this.data));
     };
+    // First instance of values[i] found in array gets replaced with newValues[i].
     PublicArrayReplacer.prototype.firstOfEach = function (values, newValues) {
         return this.returnThis_after(array_replace_first_of_all_of_1.replaceFirstOfEach(values, newValues, this.data));
     };
-    // Replaces all instances of value.
+    // Replaces all instances of value with newValue.
     PublicArrayReplacer.prototype.allOf = function (value, newValue) {
         return this.returnThis_after(array_replace_first_of_all_of_1.replaceAllOf(value, newValue, this.data));
     };
-    // Replaces all instances of each value in values.
+    // All instances of values[i] found in array get replaced with newValues[i].
     PublicArrayReplacer.prototype.allOfEach = function (values, newValues) {
         return this.returnThis_after(array_replace_first_of_all_of_1.replaceAllOfEach(values, newValues, this.data));
     };
     // Loops thru array, passing each item into replacementFunction.
     // replacementFunction signature:  function(item, index?, array?): any
     // replacementFunction must return the new value you want to give to that index in the array.
-    PublicArrayReplacer.prototype.eachBy = function (replacementFunction) {
+    PublicArrayReplacer.prototype.each = function (replacementFunction) {
         errorIfNotFunction_1.errorIfNotFunction(replacementFunction);
         var index = -1;
         while (++index < this.data.length) {

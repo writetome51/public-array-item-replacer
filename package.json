@@ -32,6 +32,7 @@
     "@writetome51/array-replace-between": "~1.0.1",
     "@writetome51/array-replace-adjacent-at": "~1.0.1",
     "@writetome51/array-replace-adjacent-to-value": "~1.1.1",
+    "@writetome51/array-replace-adjacent-items": "~1.0.1",
     "@writetome51/array-replace-at": "~1.1.1",
     "@writetome51/array-replace-first-of-all-of": "~1.1.2",
     "@writetome51/public-array-container": "~1.0.4"

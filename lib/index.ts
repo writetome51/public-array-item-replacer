@@ -7,6 +7,7 @@ import { replaceAllOf, replaceAllOfEach, replaceFirstOf, replaceFirstOfEach }
 	from '@writetome51/array-replace-first-of-all-of';
 import { replaceAdjacentToValue } from '@writetome51/array-replace-adjacent-to-value';
 import { replaceAt } from '@writetome51/array-replace-at';
+import { _replaceAdjacentItems } from '@writetome51/array-replace-adjacent-items/_replaceAdjacentItems';
 
 
 export class PublicArrayReplacer extends PublicArrayContainer {
@@ -17,18 +18,33 @@ export class PublicArrayReplacer extends PublicArrayContainer {
 	}
 
 
-	// These functions all modify the array, and return the class instance.
+	// These functions all modify the array and return the class instance.
 
 
-	// index can be negative or positive.
+	// Replaces item at index with newValue.  index can be negative or positive.
+
 	at(index, newValue): this {
 		return this.returnThis_after(replaceAt(index, newValue, this.data));
 	}
 
 
+	// Replaces adjacent items beginning at startingIndex with newValues.  
+	// Number of adjacent items that are replaced is same as number of items in newValues.
 	// startingIndex can be negative or positive.
+
 	adjacentAt(startingIndex, newValues: any[]): this {
 		return this.returnThis_after(replaceAdjacentAt(startingIndex, newValues, this.data));
+	}
+
+
+	// Replaces adjacent items beginning at startingIndex with newValues.
+	// You choose howManyToReplace.
+	// startingIndex can be negative or positive.
+
+	adjacentVariableAt(startingIndex, howManyToReplace: number, newValues): this {
+		return this.returnThis_after(
+			_replaceAdjacentItems(startingIndex, howManyToReplace, newValues, this.data)
+		);
 	}
 
 
@@ -37,21 +53,21 @@ export class PublicArrayReplacer extends PublicArrayContainer {
 	}
 	/********
 	 Explanation of adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this
-	 	Replaces adjacent items including, or near a particular value, with newValues.
-	 	Only applies to the first instance of value found in array.
-	 	The parameter 'info' is an object that looks like this:
-	 	{
-      		value: any except object (the value to search for in the array),
-         	offset: integer (tells function where, in relation to value, to begin selecting adjacent
-                    	items to replace.  If offset is zero, the selection will begin with value.)
-       		howMany: integer greater than zero (it's how many adjacent items to replace)
-       	}
+	 Replaces adjacent items including, or near a particular value, with newValues.
+	 Only applies to the first instance of value found in array.
+	 The parameter 'info' is an object that looks like this:
+	 {
+      	value: any except object (the value to search for in the array),
+        offset: integer (tells function where, in relation to value, to begin selecting adjacent
+                    		items to replace.  If offset is zero, the selection will begin with value.)
+       	howMany: integer greater than zero (it's how many adjacent items to replace)
+     }
 
-	 	Example:
-	 	//  array is [1,2,3,4,5,6,7,8] .
-	 	//  let newValues = [20,30,40];
-	 	//  this.adjacentToValue({value: 5, offset: -1, howMany: 2},  newValues);
-	 	//  array is now [1,2,3,20,30,40,6,7,8]
+	 Example:
+	 //  array is [1,2,3,4,5,6,7,8] .
+	 //  let newValues = [20,30,40];
+	 //  this.adjacentToValue({value: 5, offset: -1, howMany: 2},  newValues);
+	 //  array is now [1,2,3,20,30,40,6,7,8]
 
 	 *********/
 
@@ -65,26 +81,28 @@ export class PublicArrayReplacer extends PublicArrayContainer {
 	}
 
 
-	// Replaces first instance of value.
+	// Replaces first instance of value with newValue.
 
 	firstOf(value, newValue): this {
 		return this.returnThis_after(replaceFirstOf(value, newValue, this.data));
 	}
 
 
+	// First instance of values[i] found in array gets replaced with newValues[i].
+
 	firstOfEach(values: any[], newValues: any[]): this {
 		return this.returnThis_after(replaceFirstOfEach(values, newValues, this.data));
 	}
 
 
-	// Replaces all instances of value.
+	// Replaces all instances of value with newValue.
 
 	allOf(value, newValue): this {
 		return this.returnThis_after(replaceAllOf(value, newValue, this.data));
 	}
 
 
-	// Replaces all instances of each value in values.
+	// All instances of values[i] found in array get replaced with newValues[i].
 
 	allOfEach(values: any[], newValues: any[]): this {
 		return this.returnThis_after(replaceAllOfEach(values, newValues, this.data));
@@ -95,7 +113,7 @@ export class PublicArrayReplacer extends PublicArrayContainer {
 	// replacementFunction signature:  function(item, index?, array?): any
 	// replacementFunction must return the new value you want to give to that index in the array.
 
-	eachBy(replacementFunction: (item, index?, array?) => any): this {
+	each(replacementFunction: (item, index?, array?) => any): this {
 		errorIfNotFunction(replacementFunction);
 		let index = -1;
 		while (++index < this.data.length) {
