@@ -20,7 +20,6 @@ var array_replace_between_1 = require("@writetome51/array-replace-between");
 var array_replace_first_of_all_of_1 = require("@writetome51/array-replace-first-of-all-of");
 var array_replace_adjacent_to_value_1 = require("@writetome51/array-replace-adjacent-to-value");
 var array_replace_at_1 = require("@writetome51/array-replace-at");
-var _replaceAdjacentItems_1 = require("@writetome51/array-replace-adjacent-items/_replaceAdjacentItems");
 var PublicArrayReplacer = /** @class */ (function (_super) {
     __extends(PublicArrayReplacer, _super);
     function PublicArrayReplacer(data) {
@@ -37,12 +36,6 @@ var PublicArrayReplacer = /** @class */ (function (_super) {
     // startingIndex can be negative or positive.
     PublicArrayReplacer.prototype.adjacentAt = function (startingIndex, newValues) {
         return this.returnThis_after(array_replace_adjacent_at_1.replaceAdjacentAt(startingIndex, newValues, this.data));
-    };
-    // Replaces adjacent items beginning at startingIndex with newValues.
-    // You choose howManyToReplace.
-    // startingIndex can be negative or positive.
-    PublicArrayReplacer.prototype.adjacentVariableAt = function (startingIndex, howManyToReplace, newValues) {
-        return this.returnThis_after(_replaceAdjacentItems_1._replaceAdjacentItems(startingIndex, howManyToReplace, newValues, this.data));
     };
     PublicArrayReplacer.prototype.adjacentToValue = function (info, newValues) {
         return this.returnThis_after(array_replace_adjacent_to_value_1.replaceAdjacentToValue(info, newValues, this.data));
@@ -101,8 +94,10 @@ var PublicArrayReplacer = /** @class */ (function (_super) {
     };
     // Replaces all instances of each value in values with a single newValue.
     PublicArrayReplacer.prototype.allWithOne = function (values, newValue) {
+        var newValueCopies = new Array(values.length);
         // @ts-ignore
-        return this.returnThis_after(this.data.fill(newValue));
+        newValueCopies.fill(newValue);
+        return this.allOfEach(values, newValueCopies);
     };
     return PublicArrayReplacer;
 }(public_array_container_1.PublicArrayContainer));

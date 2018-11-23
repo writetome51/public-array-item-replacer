@@ -13,9 +13,6 @@ export declare class PublicArrayReplacer extends PublicArrayContainer {
 	adjacentAt(startingIndex: any, newValues: any[]): this;
 
 
-	adjacentVariableAt(startingIndex: any, howManyToReplace: number, newValues: any): this;
-
-
 	adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this;
 	/********
 	 Explanation of adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this

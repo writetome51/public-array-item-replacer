@@ -7,7 +7,6 @@ import { replaceAllOf, replaceAllOfEach, replaceFirstOf, replaceFirstOfEach }
 	from '@writetome51/array-replace-first-of-all-of';
 import { replaceAdjacentToValue } from '@writetome51/array-replace-adjacent-to-value';
 import { replaceAt } from '@writetome51/array-replace-at';
-import { _replaceAdjacentItems } from '@writetome51/array-replace-adjacent-items/_replaceAdjacentItems';
 
 
 export class PublicArrayReplacer extends PublicArrayContainer {
@@ -34,17 +33,6 @@ export class PublicArrayReplacer extends PublicArrayContainer {
 
 	adjacentAt(startingIndex, newValues: any[]): this {
 		return this.returnThis_after(replaceAdjacentAt(startingIndex, newValues, this.data));
-	}
-
-
-	// Replaces adjacent items beginning at startingIndex with newValues.
-	// You choose howManyToReplace.
-	// startingIndex can be negative or positive.
-
-	adjacentVariableAt(startingIndex, howManyToReplace: number, newValues): this {
-		return this.returnThis_after(
-			_replaceAdjacentItems(startingIndex, howManyToReplace, newValues, this.data)
-		);
 	}
 
 
@@ -126,8 +114,10 @@ export class PublicArrayReplacer extends PublicArrayContainer {
 	// Replaces all instances of each value in values with a single newValue.
 
 	allWithOne(values: any[], newValue): this {
+		let newValueCopies = new Array(values.length);
 		// @ts-ignore
-		return this.returnThis_after(this.data.fill(newValue));
+		newValueCopies.fill(newValue);
+		return this.allOfEach(values, newValueCopies);
 	}
 
 
