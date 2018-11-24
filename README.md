@@ -104,7 +104,10 @@ allWithOne(values: any[], newValue): this
 
 ```
 // getting an instance:
-let replace = new PublicArrayReplacer([1,2,3,4,5,6,7]);
+let replace = new PublicArrayReplacer(['h','e','l','l','o']);
+
+// changing the array content:
+replace.data = [1,2,3,4,5,6,7];
 
 // replacing 3 adjacent items starting at index 2:
 replace.adjacentAt(2, [6, 8, 10]); // replace.data is now [1, 2, 6, 8, 10, 6, 7]
@@ -113,6 +116,11 @@ replace.allWithOne([1,2,6,7], '?'); // replace.data is now ['?', '?', '?', 8, 10
 
 replace.firstOf(10, {value:10, index: 4});
 // replace.data is now ['?', '?', '?', 8, {value:10, index: 4}, '?', '?']
+
+// Replacing all question marks with zeros, then finishing with using the instance 
+// and returning regular Array:
+let arr = replace.allOf('?', 0).data;
+// arr is now [0, 0, 0, 8, {value:10, index: 4}, 0, 0]
 ```
 
 
