@@ -64,10 +64,38 @@ adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this
 
 between(numItemsToKeepAtEachEnd, newValues: any[]): this
     // Replaces everything between numItemsToKeepAtEachEnd with newValues.
-    // Example: if array is [1,2,3,4,5,6,7] , and you call .between(2, [9,10])
-    // the result will be [1,2,9,10,6,7] .  It preserves the first 2 items and the last 2.
+    // Example: if this.data is [1,2,3,4,5,6,7] , and you call .between(2, [9,10])
+    // this.data will be [1,2,9,10,6,7] .  It preserves the first 2 items and the last 2.
+    
+firstOf(value, newValue): this
+    // Replaces first instance of value with newValue.
+    
+firstOfEach(values: any[], newValues: any[]): this
+    // First instance of values[i] found in array gets replaced with newValues[i].
+    
+allOf(value, newValue): this
+    // Replaces all instances of value with newValue.
+    
+allOfEach(values: any[], newValues: any[]): this
+    // All instances of values[i] found in array get replaced with newValues[i].
+    
+each(replacementFunction: (item, index?, array?) => any): this
+    /**********
+    Loops thru array, passing each item into replacementFunction.
+    replacementFunction signature:  function(item, index?, array?): any
+    replacementFunction must return the new value you want to give to that index in the array.
+    Example:
+    //  this.data is [1,2,3,4,5,6] .
+    //  this.each((item) => {
+    //      if (item === 2 || item === 6) return item * 3;
+    //      else return item;
+    //  });
+    //  this.data is now [1,6,3,4,5,18]
+    **********/
     
     
+allWithOne(values: any[], newValue): this
+    // Replaces all instances of each value in values with newValue.
 ```
 
 
@@ -75,7 +103,16 @@ between(numItemsToKeepAtEachEnd, newValues: any[]): this
 ## Usage
 
 ```
+// getting an instance:
+let replace = new PublicArrayReplacer([1,2,3,4,5,6,7]);
 
+// replacing 3 adjacent items starting at index 2:
+replace.adjacentAt(2, [6, 8, 10]); // replace.data is now [1, 2, 6, 8, 10, 6, 7]
+
+replace.allWithOne([1,2,6,7], '?'); // replace.data is now ['?', '?', '?', 8, 10, '?', '?']
+
+replace.firstOf(10, {value:10, index: 4});
+// replace.data is now ['?', '?', '?', 8, {value:10, index: 4}, '?', '?']
 ```
 
 
