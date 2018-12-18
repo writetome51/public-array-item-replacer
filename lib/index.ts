@@ -23,7 +23,7 @@ export class PublicArrayReplacer extends PublicArrayContainer {
 	// Replaces item at index with newValue.  index can be negative or positive.
 
 	at(index, newValue): this {
-		return this.returnThis_after(replaceAt(index, newValue, this.data));
+		return this._returnThis_after(replaceAt(index, newValue, this.data));
 	}
 
 
@@ -32,12 +32,12 @@ export class PublicArrayReplacer extends PublicArrayContainer {
 	// startingIndex can be negative or positive.
 
 	adjacentAt(startingIndex, newValues: any[]): this {
-		return this.returnThis_after(replaceAdjacentAt(startingIndex, newValues, this.data));
+		return this._returnThis_after(replaceAdjacentAt(startingIndex, newValues, this.data));
 	}
 
 
 	adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this {
-		return this.returnThis_after(replaceAdjacentToValue(info, newValues, this.data));
+		return this._returnThis_after(replaceAdjacentToValue(info, newValues, this.data));
 	}
 	/********
 	 Explanation of adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this
@@ -65,35 +65,35 @@ export class PublicArrayReplacer extends PublicArrayContainer {
 	// the result will be [1,2,9,10,6,7] .  It preserves the first 2 items and the last 2.
 
 	between(numItemsToKeepAtEachEnd, newValues: any[]): this {
-		return this.returnThis_after(replaceBetween(numItemsToKeepAtEachEnd, newValues, this.data));
+		return this._returnThis_after(replaceBetween(numItemsToKeepAtEachEnd, newValues, this.data));
 	}
 
 
 	// Replaces first instance of value with newValue.
 
 	firstOf(value, newValue): this {
-		return this.returnThis_after(replaceFirstOf(value, newValue, this.data));
+		return this._returnThis_after(replaceFirstOf(value, newValue, this.data));
 	}
 
 
 	// First instance of values[i] found in array gets replaced with newValues[i].
 
 	firstOfEach(values: any[], newValues: any[]): this {
-		return this.returnThis_after(replaceFirstOfEach(values, newValues, this.data));
+		return this._returnThis_after(replaceFirstOfEach(values, newValues, this.data));
 	}
 
 
 	// Replaces all instances of value with newValue.
 
 	allOf(value, newValue): this {
-		return this.returnThis_after(replaceAllOf(value, newValue, this.data));
+		return this._returnThis_after(replaceAllOf(value, newValue, this.data));
 	}
 
 
 	// All instances of values[i] found in array get replaced with newValues[i].
 
 	allOfEach(values: any[], newValues: any[]): this {
-		return this.returnThis_after(replaceAllOfEach(values, newValues, this.data));
+		return this._returnThis_after(replaceAllOfEach(values, newValues, this.data));
 	}
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@writetome51/public-array-replacer",
-  "version": "1.0.0",
+  "version": "2.0.0",
   "description": "A TypeScript/JavaScript class for replacing array items",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -38,6 +38,6 @@
     "@writetome51/array-replace-adjacent-to-value": "~1.1.1",
     "@writetome51/array-replace-at": "~1.1.1",
     "@writetome51/array-replace-first-of-all-of": "~1.1.2",
-    "@writetome51/public-array-container": "~1.0.4"
+    "@writetome51/public-array-container": "~2.0.1"
   }
 }

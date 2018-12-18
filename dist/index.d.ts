@@ -7,10 +7,10 @@ export declare class PublicArrayReplacer extends PublicArrayContainer {
 	constructor(data?: any[]);
 
 
-	at(index: any, newValue: any): this;
+	at(index: number, newValue: any): this;
 
 
-	adjacentAt(startingIndex: any, newValues: any[]): this;
+	adjacentAt(startingIndex: number, newValues: any[]): this;
 
 
 	adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this;
@@ -35,7 +35,7 @@ export declare class PublicArrayReplacer extends PublicArrayContainer {
 	 *********/
 
 
-	between(numItemsToKeepAtEachEnd: any, newValues: any[]): this;
+	between(numItemsToKeepAtEachEnd: number, newValues: any[]): this;
 
 
 	firstOf(value: any, newValue: any): this;
@@ -50,7 +50,7 @@ export declare class PublicArrayReplacer extends PublicArrayContainer {
 	allOfEach(values: any[], newValues: any[]): this;
 
 
-	each(replacementFunction: (item: any, index?: any, array?: any) => any): this;
+	each(replacementFunction: (item: any, index?: number, array?: any[]) => any): this;
 
 
 	allWithOne(values: any[], newValue: any): this;
