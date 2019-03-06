@@ -37,6 +37,12 @@ var PublicArrayReplacer = /** @class */ (function (_super) {
     PublicArrayReplacer.prototype.adjacentAt = function (startingIndex, newValues) {
         return this._returnThis_after(array_replace_adjacent_at_1.replaceAdjacentAt(startingIndex, newValues, this.data));
     };
+    // Replaces everything between numItemsToKeepAtEachEnd with newValues.
+    // Example: if array is [1,2,3,4,5,6,7] , and you call .between(2, [9,10])
+    // the result will be [1,2,9,10,6,7] .  It preserves the first 2 items and the last 2.
+    PublicArrayReplacer.prototype.between = function (numItemsToKeepAtEachEnd, newValues) {
+        return this._returnThis_after(array_replace_between_1.replaceBetween(numItemsToKeepAtEachEnd, newValues, this.data));
+    };
     PublicArrayReplacer.prototype.adjacentToValue = function (info, newValues) {
         return this._returnThis_after(array_replace_adjacent_to_value_1.replaceAdjacentToValue(info, newValues, this.data));
     };
@@ -59,12 +65,6 @@ var PublicArrayReplacer = /** @class */ (function (_super) {
      //  array is now [1,2,3,20,30,40,6,7,8]
 
      *********/
-    // Replaces everything between numItemsToKeepAtEachEnd with newValues.
-    // Example: if array is [1,2,3,4,5,6,7] , and you call .between(2, [9,10])
-    // the result will be [1,2,9,10,6,7] .  It preserves the first 2 items and the last 2.
-    PublicArrayReplacer.prototype.between = function (numItemsToKeepAtEachEnd, newValues) {
-        return this._returnThis_after(array_replace_between_1.replaceBetween(numItemsToKeepAtEachEnd, newValues, this.data));
-    };
     // Replaces first instance of value with newValue.
     PublicArrayReplacer.prototype.firstOf = function (value, newValue) {
         return this._returnThis_after(array_replace_first_of_all_of_1.replaceFirstOf(value, newValue, this.data));

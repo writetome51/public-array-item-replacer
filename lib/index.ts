@@ -36,6 +36,15 @@ export class PublicArrayReplacer extends PublicArrayContainer {
 	}
 
 
+	// Replaces everything between numItemsToKeepAtEachEnd with newValues.
+	// Example: if array is [1,2,3,4,5,6,7] , and you call .between(2, [9,10])
+	// the result will be [1,2,9,10,6,7] .  It preserves the first 2 items and the last 2.
+
+	between(numItemsToKeepAtEachEnd, newValues: any[]): this {
+		return this._returnThis_after(replaceBetween(numItemsToKeepAtEachEnd, newValues, this.data));
+	}
+
+
 	adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this {
 		return this._returnThis_after(replaceAdjacentToValue(info, newValues, this.data));
 	}
@@ -58,15 +67,6 @@ export class PublicArrayReplacer extends PublicArrayContainer {
 	 //  array is now [1,2,3,20,30,40,6,7,8]
 
 	 *********/
-
-
-	// Replaces everything between numItemsToKeepAtEachEnd with newValues.
-	// Example: if array is [1,2,3,4,5,6,7] , and you call .between(2, [9,10])
-	// the result will be [1,2,9,10,6,7] .  It preserves the first 2 items and the last 2.
-
-	between(numItemsToKeepAtEachEnd, newValues: any[]): this {
-		return this._returnThis_after(replaceBetween(numItemsToKeepAtEachEnd, newValues, this.data));
-	}
 
 
 	// Replaces first instance of value with newValue.

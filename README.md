@@ -3,43 +3,24 @@
 An array-manipulating TypeScript/JavaScript class with methods that replace   
 items in the array.
 
-## Installation
-
-You must have npm installed first.  Then, in the command line:
-
-```bash
-npm install @writetome51/public-array-replacer
+## Constructor
 ```
-
-## Loading
+constructor(data? = [])  // 'data' becomes the array the class manipulates.
 ```
-// If using TypeScript:
-import {PublicArrayReplacer} from '@writetome51/public-array-replacer';
-// If using ES5 JavaScript:
-var PublicArrayReplacer = 
-        require('@writetome51/public-array-replacer').PublicArrayReplacer;
-```
-
-## Instantiation
-
-    let replace = new PublicArrayReplacer( [item1, item2, item3,...] );
-    // Or, instantiate with an empty array:
-    let replace = new PublicArrayReplacer();
 
 You can also reset the array by accessing the class `.data` property:
-
-    replace.data = [1,2,3,4,...];
-
+```
+this.data = [1,2,3,4];
+```
 
 ## Properties
+```
+data : any[]  // the actual array
 
-    data : any[] (read-writable) // the actual array
+className: string (read-only)
+```
 
-    className: string (read-only)
-
-
-### Methods
-
+## Methods
 ```
 at(index, newValue): this
     // Replaces item at index with newValue.  index can be negative or positive.
@@ -55,11 +36,9 @@ between(numItemsToKeepAtEachEnd, newValues: any[]): this
     // this.data will be [1,2,9,10,6,7] .  It preserves the first 2 items and 
     // the last 2.
 ```
-
 NOTICE:  For all the functions below, any parameter called `value` cannot be an object,  
 and any parameter called `values` cannot contain an object.  
 This does not include arrays. Arrays are OK, as long as they don't contain objects.
-
 ```    
 adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this
     /**********
@@ -74,10 +53,10 @@ adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this
        	howMany: integer greater than zero (it's how many adjacent items to replace)
     }
     Example:
-	//  array is [1,2,3,4,5,6,7,8] .
+	//  this.data is [1,2,3,4,5,6,7,8] .
 	//  let newValues = [20,30,40];
 	//  this.adjacentToValue({value: 5, offset: -1, howMany: 2},  newValues);
-	//  array is now [1,2,3,20,30,40,6,7,8]
+	//  this.data is now [1,2,3,20,30,40,6,7,8]
     **********/
 
     
@@ -112,8 +91,10 @@ each(replacementFunction: (item, index?, array?) => any): this
     
 allWithOne(values: any[], newValue): this
     // Replaces all instances of each value in values with newValue.
-
-
+```
+The methods below are not important to know about in order to use this  
+class.  They're inherited from [BaseClass](https://github.com/writetome51/typescript-base-class#baseclass) .
+```
 protected   _createGetterAndOrSetterForEach(
 		propertyNames: string[],
 		configuration: IGetterSetterConfiguration
@@ -153,8 +134,7 @@ protected   _runMethod_and_returnThis(
 ) : this
 ```
 
-## Usage
-
+## Usage Examples
 ```
 // changing the array content:
 replace.data = [1,2,3,4,5,6,7];
@@ -176,6 +156,24 @@ let arr = replace.allOf('?', 0).data;
 ## Inheritance Chain
 
 PublicArrayReplacer<--[PublicArrayContainer](https://github.com/writetome51/public-array-container#publicarraycontainer)<--[BaseClass](https://github.com/writetome51/typescript-base-class#baseclass)
+
+
+## Installation
+
+You must have npm installed first.  Then, in the command line:
+
+```bash
+npm install @writetome51/public-array-replacer
+```
+
+## Loading
+```
+// If using TypeScript:
+import {PublicArrayReplacer} from '@writetome51/public-array-replacer';
+// If using ES5 JavaScript:
+var PublicArrayReplacer = 
+        require('@writetome51/public-array-replacer').PublicArrayReplacer;
+```
 
 
 ## License
