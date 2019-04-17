@@ -1,12 +1,12 @@
-import { errorIfNotFunction } from 'basic-data-handling/errorIfNotFunction';
+import { errorIfNotFunction } from 'error-if-not-function';
 import { IAdjacentToValueInfo } from '@writetome51/adjacent-to-value-info-interface/IAdjacentToValueInfo';
 import { PublicArrayContainer } from '@writetome51/public-array-container';
 import { replaceAdjacentAt } from '@writetome51/array-replace-adjacent-at';
-import { replaceBetween } from '@writetome51/array-replace-between';
-import { replaceAllOf, replaceAllOfEach, replaceFirstOf, replaceFirstOfEach }
-	from '@writetome51/array-replace-first-of-all-of';
+import { replaceAllOf, replaceFirstOf } from '@writetome51/array-replace-first-of-all-of';
+import { replaceAllOfEach, replaceFirstOfEach } from '@writetome51/array-replace-first-of-all-of-each';
 import { replaceAdjacentToValue } from '@writetome51/array-replace-adjacent-to-value';
 import { replaceAt } from '@writetome51/array-replace-at';
+import { replaceBetween } from '@writetome51/array-replace-between';
 
 
 export class PublicArrayReplacer extends PublicArrayContainer {
@@ -48,6 +48,8 @@ export class PublicArrayReplacer extends PublicArrayContainer {
 	adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this {
 		return this._returnThis_after(replaceAdjacentToValue(info, newValues, this.data));
 	}
+
+
 	/********
 	 Explanation of adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this
 	 Replaces adjacent items including, or near a particular value, with newValues.

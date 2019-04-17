@@ -13,13 +13,14 @@ var __extends = (this && this.__extends) || (function () {
     };
 })();
 Object.defineProperty(exports, "__esModule", { value: true });
-var errorIfNotFunction_1 = require("basic-data-handling/errorIfNotFunction");
+var error_if_not_function_1 = require("error-if-not-function");
 var public_array_container_1 = require("@writetome51/public-array-container");
 var array_replace_adjacent_at_1 = require("@writetome51/array-replace-adjacent-at");
-var array_replace_between_1 = require("@writetome51/array-replace-between");
 var array_replace_first_of_all_of_1 = require("@writetome51/array-replace-first-of-all-of");
+var array_replace_first_of_all_of_each_1 = require("@writetome51/array-replace-first-of-all-of-each");
 var array_replace_adjacent_to_value_1 = require("@writetome51/array-replace-adjacent-to-value");
 var array_replace_at_1 = require("@writetome51/array-replace-at");
+var array_replace_between_1 = require("@writetome51/array-replace-between");
 var PublicArrayReplacer = /** @class */ (function (_super) {
     __extends(PublicArrayReplacer, _super);
     function PublicArrayReplacer(data) {
@@ -71,7 +72,7 @@ var PublicArrayReplacer = /** @class */ (function (_super) {
     };
     // First instance of values[i] found in array gets replaced with newValues[i].
     PublicArrayReplacer.prototype.firstOfEach = function (values, newValues) {
-        return this._returnThis_after(array_replace_first_of_all_of_1.replaceFirstOfEach(values, newValues, this.data));
+        return this._returnThis_after(array_replace_first_of_all_of_each_1.replaceFirstOfEach(values, newValues, this.data));
     };
     // Replaces all instances of value with newValue.
     PublicArrayReplacer.prototype.allOf = function (value, newValue) {
@@ -79,13 +80,13 @@ var PublicArrayReplacer = /** @class */ (function (_super) {
     };
     // All instances of values[i] found in array get replaced with newValues[i].
     PublicArrayReplacer.prototype.allOfEach = function (values, newValues) {
-        return this._returnThis_after(array_replace_first_of_all_of_1.replaceAllOfEach(values, newValues, this.data));
+        return this._returnThis_after(array_replace_first_of_all_of_each_1.replaceAllOfEach(values, newValues, this.data));
     };
     // Loops thru array, passing each item into replacementFunction.
     // replacementFunction signature:  function(item, index?, array?): any
     // replacementFunction must return the new value you want to give to that index in the array.
     PublicArrayReplacer.prototype.each = function (replacementFunction) {
-        errorIfNotFunction_1.errorIfNotFunction(replacementFunction);
+        error_if_not_function_1.errorIfNotFunction(replacementFunction);
         var index = -1;
         while (++index < this.data.length) {
             this.data[index] = replacementFunction(this.data[index], index, this.data);
