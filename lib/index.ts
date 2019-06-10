@@ -12,11 +12,6 @@ import { replaceBetween } from '@writetome51/array-replace-between';
 export class PublicArrayReplacer extends PublicArrayContainer {
 
 
-	constructor(data = []) {
-		super(data);
-	}
-
-
 	// These functions all modify the array and return the class instance.
 
 

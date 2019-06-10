@@ -4,24 +4,27 @@ An array-manipulating TypeScript/JavaScript class with methods that replace
 items in the array.
 
 ## Constructor
-```
-constructor(data? = [])  // 'data' becomes the array the class manipulates.
+```ts
+constructor(data? = [])  // 'data' is assigned to this.data .
 ```
 
-You can also reset the array by accessing the class `.data` property:
-```
+You can reset the array by accessing the class `.data` property:
+```ts
 this.data = [1,2,3,4];
 ```
 
 ## Properties
-```
+```ts
 data : any[]  // the actual array
 
 className: string (read-only)
 ```
 
 ## Methods
-```
+<details>
+<summary>view methods</summary>
+
+```ts
 at(index, newValue): this
     // Replaces item at index with newValue.  index can be negative or positive.
 
@@ -39,7 +42,7 @@ between(numItemsToKeepAtEachEnd, newValues: any[]): this
 NOTICE:  For all the functions below, any parameter called `value` cannot be an object,  
 and any parameter called `values` cannot contain an object.  
 This does not include arrays. Arrays are OK, as long as they don't contain objects.
-```    
+```ts
 adjacentToValue(info: IAdjacentToValueInfo, newValues: any[]): this
     /**********
     Replaces adjacent items including, or near a particular value, with newValues.
@@ -94,7 +97,7 @@ allWithOne(values: any[], newValue): this
 ```
 The methods below are not important to know about in order to use this  
 class.  They're inherited from [BaseClass](https://github.com/writetome51/typescript-base-class#baseclass) .
-```
+```ts
 protected   _createGetterAndOrSetterForEach(
 		propertyNames: string[],
 		configuration: IGetterSetterConfiguration
@@ -126,16 +129,21 @@ protected   _returnThis_after(voidExpression: any) : this
     // voidExpression is executed, then function returns this.
     // Even if voidExpression returns something, the returned data isn't used.
 
-protected   _runMethod_and_returnThis(
-    callingObject, 
-    method: Function, 
-    methodArgs: any[], 
-    additionalAction?: Function // takes the result returned by method as an argument.
-) : this
+protected   _errorIfPropertyHasNoValue(
+                property: string, // can contain dot-notation, i.e., 'property.subproperty'
+                propertyNameInError? = ''
+            ) : void
+    // If value of this[property] is undefined or null, it triggers fatal error:
+    // `The property "${propertyNameInError}" has no value.`
 ```
+</details>
+
 
 ## Usage Examples
-```
+<details>
+<summary>view examples</summary>
+
+```ts
 // changing the array content:
 replace.data = [1,2,3,4,5,6,7];
 
@@ -152,6 +160,7 @@ replace.firstOf(10, {value:10, index: 4});
 let arr = replace.allOf('?', 0).data;
 // arr is now [0, 0, 0, 8, {value:10, index: 4}, 0, 0]
 ```
+</details>
 
 ## Inheritance Chain
 
@@ -160,14 +169,12 @@ PublicArrayReplacer<--[PublicArrayContainer](https://github.com/writetome51/publ
 
 ## Installation
 
-You must have npm installed first.  Then, in the command line:
-
 ```bash
-npm install @writetome51/public-array-replacer
+npm i  @writetome51/public-array-replacer
 ```
 
 ## Loading
-```
+```ts
 // If using TypeScript:
 import {PublicArrayReplacer} from '@writetome51/public-array-replacer';
 // If using ES5 JavaScript:

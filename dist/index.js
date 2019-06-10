@@ -23,9 +23,8 @@ var array_replace_at_1 = require("@writetome51/array-replace-at");
 var array_replace_between_1 = require("@writetome51/array-replace-between");
 var PublicArrayReplacer = /** @class */ (function (_super) {
     __extends(PublicArrayReplacer, _super);
-    function PublicArrayReplacer(data) {
-        if (data === void 0) { data = []; }
-        return _super.call(this, data) || this;
+    function PublicArrayReplacer() {
+        return _super !== null && _super.apply(this, arguments) || this;
     }
     // These functions all modify the array and return the class instance.
     // Replaces item at index with newValue.  index can be negative or positive.

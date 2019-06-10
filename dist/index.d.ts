@@ -4,8 +4,6 @@ import { PublicArrayContainer } from '@writetome51/public-array-container';
 
 export declare class PublicArrayReplacer extends PublicArrayContainer {
 
-	constructor(data?: any[]);
-
 
 	at(index: number, newValue: any): this;
 
